@@ -1,0 +1,55 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Cadastrar</h2>
+      <div  class="field flex">
+        <label  class="label">Nome</label>
+        <input
+          name="name"
+          id="name"
+          type="text"
+          placeholder="Seu nome"
+          class="input"
+          value="Letícia"
+        />
+      </div>
+      <div  class="field  flex">
+        <label class="label">Nacionalidade</label>
+        <input
+          name="nacionality"
+          id="nacionality"
+          type="text"
+          placeholder="Sua nacionalidade"
+          class="input"
+          value="Brasileira"
+        />
+      </div>
+      <div  class="field  flex">
+        <label  class="label">Idade</label>
+          <input
+            name="idade"
+            id="idade"
+            type="number"
+            placeholder="Sua idade"
+            class="input"
+            value="22"
+          />
+      </div>
+      <div  class="field  flex">
+        <label class="label">Profissão</label>
+        <input
+          name="profession"
+          id="profession"
+          type="text"
+          placeholder="Sua profissão"
+          class="input"
+          value="Engenheira back-end Pleno"
+        />
+      </div>
+      <div  class="field">
+        <input (click)="add()" horizontalgap name="submit" id="submit" type="submit" value="Cadastrar" />
+      </div>
+
+    </form>
+  </div>
+</div>
