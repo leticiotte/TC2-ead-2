@@ -1,3 +1,35 @@
-<div>
-  
+<div *ngIf="this.waiting == false && person!== undefined" class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Detalhes</h2>
+      <div  class="field flex">
+        <h3>Nome</h3>
+        <p>{{ person.name }}</p>
+      </div>
+      <div  class="field  flex">
+        <h3>Nacionalidade</h3>
+        <p>{{ person.nacionality }}</p>
+      </div>
+      <div  class="field  flex">
+        <h3>Idade</h3>
+        <p>{{ person.age }}</p>
+      </div>
+      <div  class="field  flex">
+        <h3>Profissão</h3>
+        <p>{{ person.profession }}</p>
+      </div>
+      <div  class="field">
+        <input routerLink="/list" horizontalgap name="back" id="back" type="button" value="Voltar" />
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="this.error == true  && !person">
+  <h2>Pessoa não encontrado!</h2>
 </div>
