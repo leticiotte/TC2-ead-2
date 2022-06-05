@@ -1,1 +1,86 @@
-<p>edit-person works!</p>
+<div
+  *ngIf="this.waiting == false && this.notFound == false"
+  class="content"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxFlexFill
+>
+  <div id="principal">
+    <form ngNativeValidate [formGroup]="form">
+      <h2>Editar</h2>
+      <div class="field flex">
+        <label class="label">Nome</label>
+        <input
+          [(ngModel)]="person.name"
+          formControlName="name"
+          name="name"
+          id="name"
+          type="text"
+          placeholder="Seu nome"
+          class="input"
+          value="Letícia"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Nacionalidade</label>
+        <input
+          [(ngModel)]="person.nacionality"
+          formControlName="nacionality"
+          name="nacionality"
+          id="nacionality"
+          type="text"
+          placeholder="Sua nacionalidade"
+          class="input"
+          value="Brasileira"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Idade</label>
+        <input
+          [(ngModel)]="person.age"
+          formControlName="age"
+          name="idade"
+          id="idade"
+          type="number"
+          placeholder="Sua idade"
+          class="input"
+          value="22"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Profissão</label>
+        <input
+          [(ngModel)]="person.profession"
+          formControlName="profession"
+          name="profession"
+          id="profession"
+          type="text"
+          placeholder="Sua profissão"
+          class="input"
+          value="Engenheira back-end Pleno"
+        />
+      </div>
+      <div class="field">
+        <input
+          (click)="edit()"
+          horizontalgap
+          name="submit"
+          id="submit"
+          type="submit"
+          value="Editar"
+        />
+        <input routerLink="/list" horizontalgap name="back" id="back" type="button" value="Voltar" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Pessoa não encontrada.</h2>
+  </div>
+</div>

@@ -1,10 +1,12 @@
 <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
   <div id="principal">
-    <form ngNativeValidate>
+    <form ngNativeValidate [formGroup]="form">
       <h2>Cadastrar</h2>
       <div  class="field flex">
         <label  class="label">Nome</label>
         <input
+          [(ngModel)] = "person.name"
+          formControlName="name"
           name="name"
           id="name"
           type="text"
@@ -16,6 +18,8 @@
       <div  class="field  flex">
         <label class="label">Nacionalidade</label>
         <input
+          [(ngModel)] = "person.nacionality"
+          formControlName="nacionality"
           name="nacionality"
           id="nacionality"
           type="text"
@@ -27,17 +31,22 @@
       <div  class="field  flex">
         <label  class="label">Idade</label>
           <input
-            name="idade"
-            id="idade"
+            [(ngModel)] = "person.age"
+            formControlName="age"
+            name="age"
+            id="age"
             type="number"
             placeholder="Sua idade"
             class="input"
             value="22"
           />
+          <small style="color: orange; text-align: right;">Idade entre 0 e 130 anos</small>
       </div>
       <div  class="field  flex">
         <label class="label">Profissão</label>
         <input
+          [(ngModel)] = "person.profession"
+          formControlName="profession"
           name="profession"
           id="profession"
           type="text"

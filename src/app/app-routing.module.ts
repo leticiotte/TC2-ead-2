@@ -9,9 +9,10 @@ import { DetailPersonComponent } from './detail-person/detail-person.component';
 const routes: Routes = [
   { path: "list", component: ListPeopleComponent },
   { path: "add", component: AddPersonComponent },
-  { path: "edit/:i", component: EditPersonComponent },
-  { path: "detail/:i", component: DetailPersonComponent },
-  { path: "", redirectTo: "/list", pathMatch: "full" }
+  { path: "edit/:id", component: EditPersonComponent },
+  { path: "detail/:id", component: DetailPersonComponent },
+  { path: "", redirectTo: "/list", pathMatch: "full" },
+  {path: '**', redirectTo: "/list", pathMatch: "full" }
 ]
 
 @NgModule({

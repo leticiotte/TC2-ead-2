@@ -30,6 +30,8 @@
   <app-spinner></app-spinner>
 </div>
 
-<div *ngIf="this.error == true  && !person">
-  <h2>Pessoa não encontrado!</h2>
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Pessoa não encontrada.</h2>
+  </div>
 </div>

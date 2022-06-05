@@ -1,6 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, firstValueFrom } from 'rxjs';
 import { Person } from './models/Person';
 
 @Injectable({
@@ -12,15 +15,14 @@ export class DatabaseService {
   baseURL = 'https://leticia-goncalves.glitch.me';
 
   async getPeople() {
-    return this.http.get<Person[]>(this.baseURL + '/person').toPromise();
+    return firstValueFrom(this.http.get<Person[]>(this.baseURL + '/person'));
   }
 
   deletePerson(_id: string) {
-    console.log(this.baseURL + '/person/' + _id);
     return this.http.delete(this.baseURL + '/person/' + _id);
   }
 
-  addPerson(person: Person) {
+  addPerson(person: any) {
     let body = new HttpParams();
     body = body.set('name', person.name);
     body = body.set('nacionality', person.nacionality);
@@ -31,15 +33,23 @@ export class DatabaseService {
     });
   }
 
-  getPerson(_id: string): Observable<Person> {
-    return this.http.get<Person>(this.baseURL + '/person/' + _id);
+  async getPerson(_id: string) {
+    try {
+      const response = await firstValueFrom(
+        this.http.get(this.baseURL + '/person/' + _id)
+      );
+      return response;
+    } catch (error) {
+      return undefined;
+    }
   }
 
-  /*editProduct(_id: any, product: any){
+  editProduct(_id: any, person: any){
     let body = new HttpParams();
-    body = body.set('title', product.title)
-    body = body.set('price', String(product.price))
-    body = body.set('description', product.description)
-    return this.http.put(this.baseURL + "/produtos/"  + _id, body, {observe: "response"})
-  }*/
+    body = body.set('name', person.name);
+    body = body.set('nacionality', person.nacionality);
+    body = body.set('age', String(person.age));
+    body = body.set('profession', person.profession);
+    return this.http.patch(this.baseURL + "/person/"  + _id, body, {observe: "response"})
+  }
 }
